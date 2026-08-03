@@ -13,7 +13,11 @@ agent = create_agent(
     system_prompt="You are a helpful assistant",
 )
 
+def format_parser(response : str):
+    return response[0]["text"]
+
 result = agent.invoke(
     {"messages": [{"role": "user", "content": "What's the weather in San Francisco?"}]}
 )
-print(result["messages"][-1].content_blocks)
+
+print(format_parser(result["messages"][-1].content_blocks))
